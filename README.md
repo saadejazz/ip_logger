@@ -7,40 +7,40 @@ Automates the use of [iplogger.org](https://www.iplogger.org) to perform these t
 
 * Download this repository using git  
 
-```bash
-mkdir ip_logger
-cd ip_logger
-git init
-git add .
-git remote add origin https://www.github.com/saadejazz/ip_logger
-git pull origin master
-cd ..
-```
+   ```bash
+   mkdir ip_logger
+   cd ip_logger
+   git init
+   git add .
+   git remote add origin https://www.github.com/saadejazz/ip_logger
+   git pull origin master
+   cd ..
+   ```
 
 * Install Tor service on Ubuntu.   
 
-Install tor service on Ubuntu using  
-```bash
-sudo apt install tor
-```
-Start the service using  
-```bash
-sudo service start tor
-```
-OR  
-```bash
-sudo killall tor
-tor
-```
-Make sure you have tor running before you run scripts. Also update the config file as following: Open /etc/tor/torrc and uncomment the following line  
-```bash
-# ControlPort 9051
-```
+   Install tor service on Ubuntu using  
+   ```bash
+   sudo apt install tor
+   ```
+   Start the service using  
+   ```bash
+   sudo service start tor
+   ```
+   OR  
+   ```bash
+   sudo killall tor
+   tor
+   ```
+   Make sure you have tor running before you run scripts. Also update the config file as following: Open /etc/tor/torrc and uncomment the following line  
+   ```bash
+   # ControlPort 9051
+   ```
 
 * Install python dependencies  
-```bash
-python -m pip install selenium bs4 stem validators
-```
+   ```bash
+   python -m pip install selenium bs4 stem validators
+   ```
 
 ## Usage 
 
@@ -65,7 +65,7 @@ python -m pip install selenium bs4 stem validators
     }
     ```
 
-2. For URL shortening:  
+2. For tracking logger url using code:    
     **Code:**  
     ```python
     from ip_logger.logger import IpLogger
