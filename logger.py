@@ -82,13 +82,21 @@ class IpLogger():
         Tracks logger corresponding to tracking code or url. This can be obtained from the 'create_payload' method of IpLogger.
         Provide start_date and end_date in the following format: yyyy-mm-dd.
         '''
+        response = {
+            "code_exists": False,
+            "data": []
+        }
         if code is None and url is None:
             print("Provide one of tracking code or url to track logger")
-            return []
+            return response
         if code is not None:
             url = f'https://www.iplogger.org/logger/{code}'
         if url.startswith("https://www.iplogger.org/logger/"):
             efficientGet(self.log_driver, url)
+            if self.log_driver.current_url != "https://iplogger.org/":
+                response["code_exists"] = True
+            else:
+                return response
             smallWait = WebDriverWait(self.log_driver, 3)
             try:
                 element = smallWait.until(EC.visibility_of_element_located((By.XPATH, '//label[@for="gdprok1"]/span[1]')))
@@ -123,7 +131,7 @@ class IpLogger():
                 sleep(1)
                 try:
                     self.log_driver.find_element_by_xpath('//div[text()="On selected period no records found. Try to change filters."]')
-                    return []
+                    return response
                 except NoSuchElementException:
                     pass
                 element = self.wait.until(EC.visibility_of_element_located((By.XPATH, '//div[@id="statcontent"]')))
@@ -179,10 +187,11 @@ class IpLogger():
                         if div:
                             result["device_info"]["user_agent"] = div.text.partition("Device identificator: ")[2]
                         results.append(result)
-                    return results
+                        response["data"] = results
+                    return response
             except (ElementClickInterceptedException, TimeoutException, NoSuchElementException):
                 print("Something went wrong")
-        return []
+        return response
 
     def __del__(self):
         self.log_driver.close()
