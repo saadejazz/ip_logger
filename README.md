@@ -76,7 +76,9 @@ Automates the use of [iplogger.org](https://www.iplogger.org) to perform these t
 
     **Output:**  
     ```python
-    [{
+    {
+    "code_exists": True,
+    "data":[{
     'timestamp': {'date': '12.05.2020', 'time': '14:31:22'},
     'network_information': {'ip_address': '39.45.230.243',
     'isp': 'Pakistan Telecommuication company limited'},
@@ -84,5 +86,5 @@ Automates the use of [iplogger.org](https://www.iplogger.org) to perform these t
     'device_info': {'os': 'Linux x86.64.',
     'browser': 'Firefox 76.0',
     'user_agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0'}
-    }]
+    }]}
     ```
