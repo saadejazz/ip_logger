@@ -3,6 +3,7 @@ from .utils.utils import efficientGet, setDriver, verifyDateFormat, separateData
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.keys import Keys
 from .utils.promotions import denyPromotions
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
@@ -39,6 +40,9 @@ class IpLogger():
                     self.log_driver.execute_script("arguments[0].click();", element)
                 except TimeoutException:
                     pass
+                element = self.wait.until(EC.visibility_of_element_located((By.XPATH, '//input[@name="imglink"]')))
+                self.log_driver.execute_script(f'arguments[0].value="{url}"', element)
+                element.send_keys(Keys.ENTER)
                 element = self.wait.until(EC.visibility_of_element_located((By.XPATH, '//input[@id="fromfirst"]')))
                 denyPromotions(self.log_driver, self.PROMOTIONS)
                 value = element.get_attribute("value")
