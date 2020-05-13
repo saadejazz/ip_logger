@@ -19,24 +19,6 @@ def setDriver(executable_path = None, headless = True):
     options.headless = headless
     return webdriver.Firefox(options=options, firefox_profile=fp)
 
-    # fp = webdriver.FirefoxProfile()
-    # fp.set_preference("permissions.default.desktop-notification", 2)
-    # options = webdriver.FirefoxOptions()
-    # options.add_argument('-headless')
-    # options.headless = headless
-    # fp.set_preference('network.proxy.type', 1)
-    # fp.set_preference('network.proxy.socks', '127.0.0.1')
-    # fp.set_preference('network.proxy.socks_port', 9051)
-    # fp.update_preferences()
-    # driver = webdriver.Firefox(executable_path = executable_path, firefox_options = options, firefox_profile = fp)
-    # return driver
-    # chrome_options = webdriver.ChromeOptions()
-    # prefs = {"profile.default_content_setting_values.notifications" : 2}
-    # chrome_options.add_experimental_option("prefs",prefs)
-    # if headless:
-    #     chrome_options.add_argument('--headless')
-    # return webdriver.Chrome(executable_path = executable_path, chrome_options=chrome_options)
-
 def efficientGet(driver, url):
     if driver.current_url != url:
         driver.get(url)
