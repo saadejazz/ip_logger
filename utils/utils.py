@@ -1,4 +1,5 @@
 # pylint: disable=no-member
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.firefox.options import Options
 from stem.control import Controller
 from ..conf import EXECUTABLE_PATH
@@ -20,8 +21,11 @@ def setDriver(executable_path = None, headless = True):
     return webdriver.Firefox(options=options, firefox_profile=fp)
 
 def efficientGet(driver, url):
-    if driver.current_url != url:
-        driver.get(url)
+    try:
+        if driver.current_url != url:
+            driver.get(url)
+    except WebDriverException:
+        print("Something went wrong. Please try again")
 
 def verifyDateFormat(string):
     if type(string) == str:

@@ -14,7 +14,7 @@ class IpLogger():
     def __init__(self, headless = True, timeout = 10):
         self.log_driver = setDriver(headless = headless)
         self.wait = WebDriverWait(self.log_driver, timeout)
-        self.URL = "https://iplogger.org/"
+        self.URL = "http://iplogger.org/"
         self.DOMAIN = "https://2no.co/"
         self.PROMOTIONS = PROMOTIONS
         self.logs = []
@@ -193,5 +193,3 @@ class IpLogger():
                 print("Something went wrong")
         return response
 
-    def __del__(self):
-        self.log_driver.close()
