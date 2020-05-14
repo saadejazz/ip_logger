@@ -18,7 +18,7 @@ def setDriver(executable_path = None, headless = True):
     fp.update_preferences()
     options = Options()
     options.headless = headless
-    return webdriver.Firefox(options=options, firefox_profile=fp)
+    return webdriver.Firefox(executable_path = executable_path, options=options, firefox_profile=fp)
 
 def efficientGet(driver, url):
     try:
