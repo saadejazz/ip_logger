@@ -186,7 +186,14 @@ class IpLogger():
                         div = dev.findNext("div", {"title": "Device identificator"})
                         if div:
                             result["device_info"]["user_agent"] = div.text.partition("Device identificator: ")[2]
-                        results.append(result)
+                        allowed = {
+                            "timestamp": result["timestamp"]["date"] + result["timestamp"]["time"],
+                            "ip": result["network_information"]["ip_address"],
+                            "user_agent": result["device_info"]["user_agent"],
+                            "hostname": "",
+                            "referring_url": ""
+                        }
+                        results.append(allowed)
                         response["data"] = results
                     return response
             except (ElementClickInterceptedException, TimeoutException, NoSuchElementException):
