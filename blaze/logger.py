@@ -85,9 +85,7 @@ class IpLogger():
                     result = {
                         "timestamp": "",
                         "ip": "",
-                        "user_agent": "",
-                        "hostname": "",
-                        "referring_url": ""
+                        "user_agent": ""
                     }
                     td = x.find_all('td')
                     if len(td) == len(result.keys()):

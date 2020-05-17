@@ -187,11 +187,9 @@ class IpLogger():
                         if div:
                             result["device_info"]["user_agent"] = div.text.partition("Device identificator: ")[2]
                         allowed = {
-                            "timestamp": result["timestamp"]["date"] + result["timestamp"]["time"],
+                            "timestamp": result["timestamp"]["date"] + "" +  result["timestamp"]["time"],
                             "ip": result["network_information"]["ip_address"],
-                            "user_agent": result["device_info"]["user_agent"],
-                            "hostname": "",
-                            "referring_url": ""
+                            "user_agent": result["device_info"]["user_agent"]
                         }
                         results.append(allowed)
                         response["data"] = results
